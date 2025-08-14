@@ -52,6 +52,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				timeline: {
+					line: 'hsl(var(--timeline-line))',
+					background: 'hsl(var(--timeline-background))',
+					accent: 'hsl(var(--timeline-accent))',
+					'accent-foreground': 'hsl(var(--timeline-accent-foreground))'
+				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',

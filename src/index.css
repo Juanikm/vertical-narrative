@@ -2,41 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Timeline Landing Page Design System - Modern & Minimal
+All colors MUST be HSL for consistency and theming.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Clean & Minimal */
+    --background: 0 0% 98%;
+    --foreground: 222 15% 15%;
 
+    /* Surface Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 15% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 222 15% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Timeline Specific Colors */
+    --timeline-line: 222 15% 25%;
+    --timeline-background: 210 40% 96%;
+    --timeline-accent: 212 90% 45%;
+    --timeline-accent-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Primary Brand */
+    --primary: 222 15% 25%;
+    --primary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Secondary Palette */
+    --secondary: 210 20% 92%;
+    --secondary-foreground: 222 15% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted Tones */
+    --muted: 210 20% 94%;
+    --muted-foreground: 215 15% 55%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Accent Colors */
+    --accent: 212 90% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --radius: 0.5rem;
+    /* Border & Input */
+    --border: 214 20% 88%;
+    --input: 214 20% 90%;
+    --ring: 212 90% 45%;
+
+    /* Border Radius */
+    --radius: 0.75rem;
+
+    /* Timeline Shadows */
+    --shadow-subtle: 0 2px 10px -3px hsl(222 15% 25% / 0.1);
+    --shadow-timeline: 0 8px 30px -12px hsl(222 15% 25% / 0.25);
+
+    /* Animation Variables */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +124,79 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "liga" 1, "kern" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Timeline Animation Classes */
+  .timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-item.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .timeline-item-left {
+    transform: translateX(-30px) translateY(30px);
+  }
+
+  .timeline-item-left.animate-in {
+    transform: translateX(0) translateY(0);
+  }
+
+  .timeline-item-right {
+    transform: translateX(30px) translateY(30px);
+  }
+
+  .timeline-item-right.animate-in {
+    transform: translateX(0) translateY(0);
+  }
+
+  /* Timeline Line Animation */
+  .timeline-line {
+    background: linear-gradient(180deg, 
+      hsl(var(--timeline-line)) 0%, 
+      hsl(var(--timeline-accent)) 50%, 
+      hsl(var(--timeline-line)) 100%);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  /* Date Marker Styles */
+  .timeline-date {
+    background: hsl(var(--timeline-accent));
+    color: hsl(var(--timeline-accent-foreground));
+    box-shadow: var(--shadow-timeline);
+    transition: var(--transition-bounce);
+  }
+
+  .timeline-date:hover {
+    transform: scale(1.1);
+    box-shadow: 0 12px 40px -16px hsl(var(--timeline-accent) / 0.4);
+  }
+
+  /* Image Container Styles */
+  .timeline-image {
+    background: hsl(var(--muted));
+    border: 2px solid hsl(var(--border));
+    box-shadow: var(--shadow-subtle);
+    transition: var(--transition-smooth);
+  }
+
+  .timeline-image:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-timeline);
+    border-color: hsl(var(--timeline-accent) / 0.3);
   }
 }
