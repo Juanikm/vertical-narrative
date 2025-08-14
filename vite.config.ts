@@ -9,6 +9,5 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
-  base: '/vertical-narrative/', // coincide con el nombre del repo
+  base: '/vertical-narrative/', // obligatorio para GitHub Pages
 })
-
