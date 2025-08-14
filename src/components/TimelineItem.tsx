@@ -27,45 +27,70 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
           ${side === "left" ? "md:justify-start" : "md:justify-end"}
         `}
       >
-        {/* Desktop Layout */}
+        {/* Desktop Layout - Column-based */}
         <div className="hidden md:block w-full">
-          <div
-            className={`
-              timeline-item
-              ${side === "left" ? "timeline-item-left pr-20" : "timeline-item-right pl-20"}
-              ${isVisible ? "animate-in" : ""}
-              flex items-center
-              ${side === "left" ? "flex-row" : "flex-row-reverse"}
-              max-w-2xl
-              ${side === "left" ? "mr-auto" : "ml-auto"}
-            `}
-          >
-            {/* Content */}
-            <div className={`flex-1 ${side === "left" ? "text-right" : "text-left"}`}>
-              <div className="timeline-image w-48 h-48 rounded-2xl overflow-hidden mb-6">
-                <img
-                  src={image}
-                  alt={title}
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <h3 className="text-2xl font-bold mb-3 text-foreground">{title}</h3>
-              <p className="text-muted-foreground text-lg leading-relaxed">
-                {description}
-              </p>
+          <div className="grid grid-cols-2 gap-8 relative">
+            {/* Left Column */}
+            <div className={`${side === "left" ? "flex justify-end" : ""}`}>
+              {side === "left" && (
+                <div
+                  className={`
+                    timeline-item timeline-item-left
+                    ${isVisible ? "animate-in" : ""}
+                    text-right max-w-lg
+                  `}
+                >
+                  <div className="timeline-image w-96 h-96 rounded-2xl overflow-hidden mb-6">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-foreground">{title}</h3>
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+              )}
             </div>
-          </div>
 
-          {/* Date Marker */}
-          <div
-            className={`
-              absolute left-1/2 top-24 transform -translate-x-1/2 -translate-y-1/2
-              timeline-date px-6 py-3 rounded-full text-sm font-bold
-              transition-all duration-500 delay-200
-              ${isVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"}
-            `}
-          >
-            {date}
+            {/* Right Column */}
+            <div className={`${side === "right" ? "flex justify-start" : ""}`}>
+              {side === "right" && (
+                <div
+                  className={`
+                    timeline-item timeline-item-right
+                    ${isVisible ? "animate-in" : ""}
+                    text-left max-w-lg
+                  `}
+                >
+                  <div className="timeline-image w-96 h-96 rounded-2xl overflow-hidden mb-6">
+                    <img
+                      src={image}
+                      alt={title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <h3 className="text-2xl font-bold mb-3 text-foreground">{title}</h3>
+                  <p className="text-muted-foreground text-lg leading-relaxed">
+                    {description}
+                  </p>
+                </div>
+              )}
+            </div>
+
+            {/* Date Marker - Centered over the gap */}
+            <div
+              className={`
+                absolute left-1/2 top-48 transform -translate-x-1/2 -translate-y-1/2
+                timeline-date px-6 py-3 rounded-full text-sm font-bold
+                transition-all duration-500 delay-200
+                ${isVisible ? "scale-100 opacity-100" : "scale-90 opacity-0"}
+              `}
+            >
+              {date}
+            </div>
           </div>
         </div>
 
@@ -91,7 +116,7 @@ export const TimelineItem = forwardRef<HTMLDivElement, TimelineItemProps>(
 
             {/* Content */}
             <div className="text-left">
-              <div className="timeline-image w-full max-w-sm h-64 rounded-2xl overflow-hidden mb-6">
+              <div className="timeline-image w-full max-w-md h-80 rounded-2xl overflow-hidden mb-6">
                 <img
                   src={image}
                   alt={title}
