@@ -17,16 +17,16 @@ interface TimelineItemData {
 const timelineData: TimelineItemData[] = [
   {
     id: 1,
-    date: "2024",
-    title: "Project Genesis",
-    description: "The beginning of our innovative journey with cutting-edge design and modern technology.",
+    date: "2020",
+    title: "Mi primer diseño",
+    description: "Un posteo o hero de email de Cabify",
     image: timeline1,
     side: "left",
   },
   {
     id: 2,
-    date: "2023",
-    title: "Mountain Discovery",
+    date: "2021",
+    title: "Mi ",
     description: "Exploring new horizons and pushing boundaries to reach unprecedented heights.",
     image: timeline2,
     side: "right",
